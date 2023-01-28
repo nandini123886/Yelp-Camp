@@ -5,7 +5,6 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const usersRoute = require("./routers/users");
-
 dotenv.config();
 const passport = require("passport");
 const User = require("./models/user");
@@ -19,6 +18,7 @@ const session = require("express-session");
 
 mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
+  useUnifiedTopology: true 
 });
 app.use(connectFlash());
 // -----------------------------Express-session----------------------
