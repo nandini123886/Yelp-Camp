@@ -5,7 +5,7 @@ const middleWare = require("../middleware");
 
 const router = express.Router();
 router.get("/", (req, res) => {
-  res.render("./campgrounds/homepage");
+  res.render("campgrounds/homepage");
 });
 router.get("/campgrounds", (req, res) => {
   try {
@@ -68,7 +68,7 @@ router.get("/campgrounds/:id/edit", middleWare.checkOwnership, (req, res) => {
     findUser()
       .then(result => {
         console.log("Found the user");
-        res.render("campgrounds/update.ejs", {
+        res.render("campgrounds/update", {
           camp: result
         });
         req.flash("error", "Oops! Campground not found");
