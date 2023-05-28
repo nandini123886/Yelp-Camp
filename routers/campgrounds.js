@@ -5,7 +5,7 @@ const middleWare = require("../middleware");
 
 const router = express.Router();
 router.get("/", (req, res) => {
-  res.render("campgrounds/homepage");
+  res.render("./campgrounds/homepage");
 });
 router.get("/campgrounds", (req, res) => {
   try {
