@@ -20,6 +20,7 @@ mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true 
 });
+app.set("view engine", "ejs");
 app.use(connectFlash());
 // -----------------------------Express-session----------------------
 const MongoStore = require("connect-mongo")(session);
@@ -41,7 +42,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 const body_parser = require("body-parser");
 // app.set("views","/views");
-app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
@@ -72,7 +72,7 @@ app.use(campgroundRoutes);
 app.use(commentRoutes);
 app.use(usersRoute);
 app.get("*", (req, res) => {
-  res.render("notfound");
+  res.render("notfound.ejs");
 });
 app.listen(process.env.PORT || 5000, process.env.IP, () => {
   console.log("Server started! at PORT", process.env.PORT);
