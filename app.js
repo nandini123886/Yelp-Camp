@@ -20,9 +20,9 @@ mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true 
 });
-app.set("views","/views");
-app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
+app.set("views",`${__dirname}/views`);
+app.set("view engine", "ejs");
 app.use(connectFlash());
 // -----------------------------Express-session----------------------
 const MongoStore = require("connect-mongo")(session);
