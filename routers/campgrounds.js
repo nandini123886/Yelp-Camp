@@ -5,7 +5,7 @@ const middleWare = require("../middleware");
 
 const router = express.Router();
 router.get("/", (req, res) => {
-  res.render("campgrounds/homepage.ejs");
+  res.render("campgrounds/homepage");
 });
 router.get("/campgrounds", (req, res) => {
   try {
@@ -14,7 +14,7 @@ router.get("/campgrounds", (req, res) => {
     }
     async function renderCampgrounds() {
       const campgrounds = await getAllCampgrounds();
-      res.render("campgrounds/index.ejs", {
+      res.render("campgrounds/index", {
         campgrounds: campgrounds,
         user: req.user
       });
@@ -57,7 +57,7 @@ router.post("/campgrounds", (req, res) => {
   // Redirect User to the campgrounds page
 });
 router.get("/campgrounds/new", middleWare.isLoggedIn, (req, res) => {
-  res.render("new.ejs");
+  res.render("new");
 });
 router.get("/campgrounds/:id/edit", middleWare.checkOwnership, (req, res) => {
   //  content using Promises
@@ -166,16 +166,16 @@ router.get("/campgrounds/:id", (req, res) => {
     getCampground()
       .then(camp => {
         console.log("Called");
-        res.render("campgrounds/show.ejs", {
+        res.render("campgrounds/show", {
           camp,
           user: req.user
         });
       })
       .catch(err => {
-        res.render("notFound.ejs");
+        res.render("notFound");
       });
   } catch (err) {
-    res.render("notFound.ejs");
+    res.render("notFound");
   }
 
   //   Using Callbacks
