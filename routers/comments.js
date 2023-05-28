@@ -14,7 +14,7 @@ router.get('/campgrounds/:id/comments/new', isLoggedIn, (req, res) => {
             // res.redirect('/campgrounds/' + id);
             console.log('Error');
         } else {
-            res.render('/comments/new', {
+            res.render('comments/new', {
                 camp: page
             });
         }
