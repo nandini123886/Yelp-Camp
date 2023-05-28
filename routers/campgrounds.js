@@ -5,7 +5,7 @@ const middleWare = require("../middleware");
 
 const router = express.Router();
 router.get("/", (req, res) => {
-  res.render("campgrounds/homepage");
+  res.render("campgrounds/homepage.ejs");
 });
 router.get("/campgrounds", (req, res) => {
   try {
@@ -14,7 +14,7 @@ router.get("/campgrounds", (req, res) => {
     }
     async function renderCampgrounds() {
       const campgrounds = await getAllCampgrounds();
-      res.render("campgrounds/index", {
+      res.render("campgrounds/index.ejs", {
         campgrounds: campgrounds,
         user: req.user
       });
@@ -57,7 +57,7 @@ router.post("/campgrounds", (req, res) => {
   // Redirect User to the campgrounds page
 });
 router.get("/campgrounds/new", middleWare.isLoggedIn, (req, res) => {
-  res.render("new");
+  res.render("new.ejs");
 });
 router.get("/campgrounds/:id/edit", middleWare.checkOwnership, (req, res) => {
   //  content using Promises
@@ -68,7 +68,7 @@ router.get("/campgrounds/:id/edit", middleWare.checkOwnership, (req, res) => {
     findUser()
       .then(result => {
         console.log("Found the user");
-        res.render("campgrounds/update", {
+        res.render("campgrounds/update.ejs", {
           camp: result
         });
         req.flash("error", "Oops! Campground not found");
@@ -166,16 +166,16 @@ router.get("/campgrounds/:id", (req, res) => {
     getCampground()
       .then(camp => {
         console.log("Called");
-        res.render("campgrounds/show", {
+        res.render("campgrounds/show.ejs", {
           camp,
           user: req.user
         });
       })
       .catch(err => {
-        res.render("notFound");
+        res.render("notFound.ejs");
       });
   } catch (err) {
-    res.render("notFound");
+    res.render("notFound.ejs");
   }
 
   //   Using Callbacks
