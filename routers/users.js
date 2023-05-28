@@ -12,7 +12,7 @@ router.get('/profile/:id', (req, res) => {
                 .exec((_err, userCampgrounds) => {
                     if (!_err) {
                         console.log(userCampgrounds);
-                        res.render('./users/show.ejs', {
+                        res.render('/users/show', {
                             userCampgrounds,
                             foundUser
                         });
@@ -21,7 +21,7 @@ router.get('/profile/:id', (req, res) => {
                     }
                 });
         } else {
-            res.render('notFound.ejs');
+            res.render('notFound');
         }
     });
 });
