@@ -40,7 +40,7 @@ app.use(methodOverride("_method"));
 app.use(passport.initialize());
 app.use(passport.session());
 const body_parser = require("body-parser");
-app.set("views","/views");
+// app.set("views","/views");
 app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
 
