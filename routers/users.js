@@ -12,7 +12,7 @@ router.get('/profile/:id', (req, res) => {
                 .exec((_err, userCampgrounds) => {
                     if (!_err) {
                         console.log(userCampgrounds);
-                        res.render('/users/show', {
+                        res.render('users/show', {
                             userCampgrounds,
                             foundUser
                         });
