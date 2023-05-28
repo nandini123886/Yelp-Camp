@@ -20,7 +20,9 @@ mongoose.connect(process.env.DATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true 
 });
+app.set("views","/views");
 app.set("view engine", "ejs");
+app.use(express.static(`${__dirname}/public`));
 app.use(connectFlash());
 // -----------------------------Express-session----------------------
 const MongoStore = require("connect-mongo")(session);
@@ -41,8 +43,7 @@ app.use(methodOverride("_method"));
 app.use(passport.initialize());
 app.use(passport.session());
 const body_parser = require("body-parser");
-// app.set("views","/views");
-app.use(express.static(`${__dirname}/public`));
+
 
 app.use((req, res, next) => {
   // eslint-disable-next-line no-param-reassign
